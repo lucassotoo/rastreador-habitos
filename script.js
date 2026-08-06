@@ -1,6 +1,7 @@
 const form = document.getElementById('habito-form');
 const nombreHabito= document.getElementById('nombre-habito');
 const listaHabitos = document.getElementById('lista-habitos');
+const hoy = new Date().toISOString().split('T')[0];
 
 class Habito{
     constructor(nombre){
@@ -31,14 +32,18 @@ function mostrarHabitos() {
             <button onclick="eliminarHabito('${habito.id}')">Eliminar</button>
         </div>
     `).join('');
+
 }
 
 function eliminarHabito(id) {
     let habitos = getHabitos();
     habitos = habitos.filter(habito => habito.id !== id);
     localStorage.setItem('habitos', JSON.stringify(habitos));
+    mostrarHabitos();
 }
-
+function toggleCumplidoHoy(id){
+    
+}
 //App principal
 
 mostrarHabitos();
