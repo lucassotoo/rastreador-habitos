@@ -16,8 +16,8 @@ function getHabitos() {
     return habitos;
 }
 
-function saveHabitos(habitos) {
-    const habito = getHabitos();
+function saveHabito(habito) {
+    const habitos = getHabitos();
     habitos.push(habito);
     localStorage.setItem('habitos', JSON.stringify(habitos));
 }
@@ -36,16 +36,16 @@ function mostrarHabitos() {
 function eliminarHabito(id) {
     let habitos = getHabitos();
     habitos = habitos.filter(habito => habito.id !== id);
-    saveHabitos(habitos);
-    mostrarHabitos()
-    ;
+    localStorage.setItem('habitos', JSON.stringify(habitos));
 }
 
 //App principal
 
-
+mostrarHabitos();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const nuevoHabito = new Habito(nombreHabito.value);
-
+    saveHabito(nuevoHabito);
+    mostrarHabitos();
+    
 });
